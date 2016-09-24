@@ -18,7 +18,23 @@ module Marbi
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = :ru
+    config.default_locale = :ru
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = %w(ru uk en tr pl be)
+    config.i18n.fallbacks = true
+    config.i18n.enforce_available_locales = true
+    RouteTranslator.config.host_locales = {
+        'ru.mirmarbi.com' => :ru,
+        'uk.mirmarbi.com' => :uk,
+        'en.mirmarbi.com' => :en,
+        'tr.mirmarbi.com' => :tr,
+        'pl.mirmarbi.com' => :pl,
+        'be.mirmarbi.com' => :be
+    }
+    config.generate_unlocalized_routes         = false
+    config.generate_unnamed_unlocalized_routes = false
+    config.force_locale                        = true
+    config.hide_locale                         = false
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true

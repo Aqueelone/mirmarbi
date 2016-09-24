@@ -1,0 +1,21 @@
+= content_for :custom_meta_tags do
+  %link{rel: "canonical", href: "#{request.original_url}"}
+  %meta{property: "og:image", content: "http://mirmarbi.com/bannerShare.jpg"}
+  %meta{property: "og:image:type", content: "image/jpeg"}
+  %meta{property: "og:image:width", content: "487"}
+  %meta{property: "og:image:height", content: "249"}
+  - keywords = ['marbi', 'mirmarbi']
+  - keywords << ['turkey', 'турция', 'турція', 'турецкие', 'турецькі', 'turkish']
+  %meta{name: "keywords", content: "#{keywords.join(', ')}"}
+.container.hero
+  .page-title
+    %h1.headline
+      =t(:_about)
+    %h2.subheadline
+      =t('about.p4')
+    .col-sm-8
+      .heading.text-left.col-sm-8.col-sm-offset-2.wow.fadeInUp.animated{ 'data-wow-duration' => "1500ms", 'data-wow-delay' => "500ms"}
+        %h2
+  %video.sohpVid{autoplay: "", loop: "", poster: "//cdn.mirmarbi.com/mm3aboutjpeg.jpeg"}
+    %source{src: "//cdn.mirmarbi.com/mm3con.mp4", type: "video/mp4"}
+

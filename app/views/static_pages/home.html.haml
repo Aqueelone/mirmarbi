@@ -1,0 +1,26 @@
+= content_for :custom_meta_tags do
+  %link{rel: "canonical", href: "#{request.original_url}"}
+  %meta{property: "og:image", content: "http://mirmarbi.com/bannerShare.jpg"}
+  %meta{property: "og:image:type", content: "image/jpeg"}
+  %meta{property: "og:image:width", content: "487"}
+  %meta{property: "og:image:height", content: "249"}
+  - keywords = ['marbi', 'mirmarbi']
+  - keywords << ['turkey', 'турция', 'турція', 'турецкие', 'турецькі', 'turkish']
+  %meta{name: "keywords", content: "#{keywords.join(', ')}"}
+#home-slider.inview-observer.carousel.slide.carousel-fade.parallax{data: {:image => 'banner1.jpg'}}
+  .hero
+    .page-title
+      %h1.headline
+        = t('home-slider.t1')
+      %h2.subheadline
+        = t('home-slider.t2')
+    %video.sohpVid{autoplay: "", loop: "", poster: "//cdn.mirmarbi.com/mm3jpeg.jpg"}
+      %source{src: "//cdn.mirmarbi.com/mm3.mp4", type: "video/mp4"}
+  .catalog-notifier
+    .choose-catalog-box
+      - Category.where("categories.visible = true AND categories.parent_id IS NULL").each do |c|
+        .box
+          %a.cat_main{href: "#{c.id}"}
+            = attachment_image_tag(c, :image, :fill, 120, 120, fallback: "default120x120.png", class: 'image_uploaded')
+            %span
+              = c.name
